@@ -1,0 +1,39 @@
+# Dependencies
+node_modules/
+client/node_modules/
+server/node_modules/
+
+# Environment Variables - NEVER commit these
+.env
+server/.env
+client/.env
+client/.env.local
+client/.env.production
+
+# Build output
+client/dist/
+client/build/
+
+# Uploads directory (files stored on server)
+server/uploads/
+
+# Logs
+*.log
+server/debug.log
+server/gemini_error.log
+server/test.log
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor files
+.vscode/
+.idea/
+
+# Debug/test scripts
+debug_submissions.js
+check_users.js
+test_pdf.js
+server/test-gemini.js
+server/test-openai.js
