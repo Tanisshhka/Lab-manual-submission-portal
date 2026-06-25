@@ -1,129 +1,83 @@
-# 📚 Lab Manual Submission Portal
+# Lab Manual Submission Portal
 
-A full-stack MERN web application for **Sage University Bhopal** that enables students to upload lab manuals and faculty to review them with AI-powered analysis.
+An intelligent, AI-powered Lab Manual Submission Portal designed for Sage University students and faculty. This platform streamlines the submission process, utilizing AI (Google Gemini & OpenAI) to analyze uploaded PDF manuals, provide instant feedback, and assist faculty in grading.
 
-![Tech Stack](https://img.shields.io/badge/Stack-MERN-blue?style=for-the-badge)
-![License](https://img.shields.io/badge/License-ISC-green?style=for-the-badge)
-![Platform](https://img.shields.io/badge/Deployed%20on-Vercel%20%2B%20Render-black?style=for-the-badge)
+![Lab Manual Portal](https://raw.githubusercontent.com/Tanisshhka/Lab-manual-submission-portal/main/client/public/vite.svg)
 
----
+## 🚀 Features
 
-## ✨ Features
+### For Students
+*   **Secure Authentication:** Role-based sign-up and login.
+*   **Seamless Uploads:** Easily upload lab manuals (PDF format) to the system.
+*   **Instant AI Feedback:** Get immediate analysis, grammar checks, and improvement suggestions powered by advanced AI models.
+*   **Dashboard Tracking:** Monitor the status of all submissions (Pending, Reviewed, Approved).
 
-- 🔐 **Role-based Authentication** — Separate dashboards for Students and Faculty
-- 📤 **Lab Manual Upload** — Students upload PDFs linked to their subject & semester
-- 🤖 **AI-Powered Review** — Google Gemini API automatically analyzes uploaded manuals
-- 🌩️ **Cloud File Storage** — Files stored securely on Cloudinary
-- 📧 **Email Notifications** — Faculty receives email alerts on new submissions
-- 📊 **Real-time Dashboard** — Track submission status (Pending / Reviewed / Rejected)
-- 🌙 **Dark Mode UI** — Premium glassmorphism design with animations
+### For Faculty
+*   **Context-Aware Dashboard:** Automatically filters student submissions based on the faculty member's assigned department, subject, and semester.
+*   **AI-Assisted Grading:** Review the AI-generated report before adding final comments and status updates.
+*   **Status Management:** Easily approve, reject, or request revisions for student submissions.
+*   **Statistics & Analytics:** Visual charts and metrics to track submission statuses across the classroom.
 
----
+## 🛠️ Technology Stack
 
-## 🛠️ Tech Stack
+*   **Frontend:** React 19, Vite, Tailwind CSS, Framer Motion (for dynamic animations)
+*   **Backend:** Node.js, Express.js (Deployed as Vercel Serverless Functions)
+*   **Database:** MongoDB (Mongoose ODM)
+*   **AI Integration:** Google Gemini API & OpenAI API
+*   **Authentication:** JSON Web Tokens (JWT) & bcrypt.js
+*   **Deployment:** Vercel (Full-Stack Monorepo)
 
-| Layer | Technology |
-|-------|-----------|
-| Frontend | React 19, Vite, Tailwind CSS, Framer Motion |
-| Backend | Node.js, Express.js |
-| Database | MongoDB Atlas |
-| AI Analysis | Google Gemini API |
-| File Storage | Cloudinary |
-| Authentication | JWT |
-| Email | Nodemailer |
-
----
-
-## 📁 Project Structure
-
-```
-lab-manual-submission-portal/
-├── client/                 # React + Vite frontend
-│   ├── src/
-│   │   ├── api/            # Axios API config
-│   │   ├── components/     # Reusable components
-│   │   ├── context/        # Auth context
-│   │   └── pages/          # Page components
-│   └── vercel.json         # Vercel SPA routing config
-└── server/                 # Express backend
-    ├── config/             # DB & Cloudinary config
-    ├── controllers/        # Route logic
-    ├── middleware/         # Auth middleware
-    ├── models/             # Mongoose schemas
-    ├── routes/             # API routes
-    ├── services/           # AI & Email services
-    └── .env.example        # Environment variable template
-```
-
----
-
-## 🚀 Running Locally
+## 💻 Running Locally
 
 ### Prerequisites
-- Node.js v18+
-- MongoDB Atlas account
-- Cloudinary account
-- Google Gemini API key
+*   Node.js (v18+)
+*   MongoDB Atlas Account
 
-### 1. Clone the repo
-```bash
-git clone https://github.com/YOUR_USERNAME/lab-manual-submission-portal.git
-cd lab-manual-submission-portal
-```
+### Setup Instructions
 
-### 2. Setup the backend
-```bash
-cd server
-cp .env.example .env       # Fill in your values
-npm install
-npm run dev
-```
+1.  **Clone the repository:**
+    ```bash
+    git clone https://github.com/Tanisshhka/Lab-manual-submission-portal.git
+    cd Lab-manual-submission-portal/client
+    ```
 
-### 3. Setup the frontend
-```bash
-cd client
-npm install
-npm run dev
-```
+2.  **Install Dependencies:**
+    This project is set up as a Vercel native project. All dependencies (both frontend and backend) are in the `client` folder.
+    ```bash
+    npm install
+    ```
 
-Frontend runs on `http://localhost:5173`  
-Backend runs on `http://localhost:5000`
+3.  **Environment Variables:**
+    Create a `.env` file in the `client/backend/` directory:
+    ```env
+    PORT=5005
+    MONGODB_URI=your_mongodb_connection_string
+    JWT_SECRET=your_jwt_secret
+    GEMINI_API_KEY=your_gemini_api_key
+    OPENAI_API_KEY=your_openai_api_key
+    ```
 
----
+4.  **Start the Local Backend Server:**
+    ```bash
+    node backend/index.js
+    ```
 
-## ⚙️ Environment Variables
+5.  **Start the React Frontend:**
+    Open a **second** terminal inside the `client` folder:
+    ```bash
+    npm run dev
+    ```
 
-Copy `server/.env.example` to `server/.env` and fill in your values:
+6.  Open `http://localhost:5173` in your browser.
 
-| Variable | Description |
-|----------|-------------|
-| `MONGODB_URI` | MongoDB Atlas connection string |
-| `JWT_SECRET` | Secret key for JWT tokens |
-| `GEMINI_API_KEY` | Google Gemini API key |
-| `CLOUDINARY_CLOUD_NAME` | Cloudinary cloud name |
-| `CLOUDINARY_API_KEY` | Cloudinary API key |
-| `CLOUDINARY_API_SECRET` | Cloudinary API secret |
-| `EMAIL_USER` | Gmail address for notifications |
-| `EMAIL_PASS` | Gmail App Password |
+## ☁️ Deployment (Vercel)
 
----
+This project is optimized for a zero-config deployment on Vercel utilizing Serverless Functions.
 
-## 🌐 Deployment
-
-- **Frontend** → [Vercel](https://vercel.com) — set root directory to `client`, add `VITE_API_URL` env var
-- **Backend** → [Render](https://render.com) — set root directory to `server`, add all env vars
-
-See [Deployment Guide](./DEPLOYMENT.md) for detailed step-by-step instructions.
-
----
-
-## 👩‍💻 Made For
-
-**Sage University Bhopal** — Computer Science Department  
-Lab Manual Submission & Review System
-
----
+1. Create a new project in Vercel and import this GitHub repository.
+2. Ensure the **Root Directory** in Vercel is set to `client` (or left as default if it detects it).
+3. Add the environment variables from your `.env` file into the Vercel Dashboard -> Project Settings -> Environment Variables.
+4. Deploy! Vercel will automatically build the React app and convert the `client/api/index.js` into your backend server.
 
 ## 📄 License
-
-ISC License
+This project is open-source and available under the MIT License.
