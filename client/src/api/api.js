@@ -1,7 +1,10 @@
 import axios from 'axios';
 
+const rawBase = import.meta.env.VITE_API_URL || 'https://lab-manual-submission-portal.onrender.com';
+const baseURL = rawBase.endsWith('/api') ? rawBase : `${rawBase}/api`;
+
 const api = axios.create({
-  baseURL: import.meta.env.VITE_API_URL || 'http://localhost:5005/api',
+  baseURL,
 });
 
 api.interceptors.request.use((config) => {

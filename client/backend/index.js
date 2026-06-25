@@ -9,7 +9,8 @@ const app = express();
 app.use(cors({
   origin: [
     /^http:\/\/localhost:\d+$/,
-    /\.vercel\.app$/
+    /^https:\/\/.*\.vercel\.app$/,
+    'https://lab-manual-submission-portal.onrender.com'
   ],
   credentials: true
 }));
@@ -32,9 +33,7 @@ app.use(async (req, res, next) => {
 app.use('/api/auth', require('./routes/authRoutes'));
 app.use('/api/submissions', require('./routes/submissionRoutes'));
 
-if (process.env.NODE_ENV !== 'production') {
-  const PORT = process.env.PORT || 5005;
-  app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
-}
+const PORT = process.env.PORT || 5005;
+app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
 
 module.exports = app;
