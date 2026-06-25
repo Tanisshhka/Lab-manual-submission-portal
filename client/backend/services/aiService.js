@@ -35,7 +35,6 @@ exports.analyzeManual = async (text) => {
     responseText = responseText.replace(/^```(?:json)?\s*/i, '').replace(/\s*```$/i, '').trim();
     return JSON.parse(responseText);
   } catch (err) {
-    require('fs').writeFileSync('gemini_error.log', err.stack || err.message, 'utf-8');
     console.error('AI Analysis Error:', err);
     return {
       missingHeadings: [],
