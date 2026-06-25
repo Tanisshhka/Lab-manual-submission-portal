@@ -18,6 +18,10 @@ app.use(express.json());
 
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
+app.get('/api/health', (req, res) => {
+  res.json({ status: 'ok' });
+});
+
 app.use('/api/auth', require('./routes/authRoutes'));
 app.use('/api/submissions', require('./routes/submissionRoutes'));
 
